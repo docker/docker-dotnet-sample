@@ -4,16 +4,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace myWebApp.Pages;
 
 public class IndexModel : PageModel
-{
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
     {
-        _logger = logger;
-    }
+        public string StudentName { get; private set; } = "PageModel in C#";
+        private readonly ILogger<IndexModel> _logger;
+        private readonly myWebApp.Data.SchoolContext _context;
 
-    public void OnGet()
-    {
+        public IndexModel(ILogger<IndexModel> logger, myWebApp.Data.SchoolContext context)
+        {
+            _logger = logger;
+            _context= context;
+        }
 
+        public void OnGet()
+        {
+            var s =_context.Students?.Where(d=>d.ID==1).FirstOrDefault();
+            this.StudentName = $"{s?.FirstMidName} {s?.LastName}";
+        }
     }
-}
