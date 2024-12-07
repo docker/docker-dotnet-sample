@@ -16,4 +16,3 @@ public class PrivacyModel : PageModel
     {
     }
 }
-
