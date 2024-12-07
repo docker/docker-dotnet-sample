@@ -5,6 +5,8 @@
 # Create a stage for building the application.
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
+
+
 # Create a new .NET console application
 RUN dotnet new console -o testApp && cd testApp && \
     # Add a vulnerable version of Newtonsoft.Json
@@ -24,6 +26,11 @@ RUN dotnet publish -c Release -o /app
 
 # Create a new stage for running the application.
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+
+LABEL maintainer="onoureldin14" \
+      version="1.0.0" \
+      description="A sample .NET application with a vulnerable dependency for testing" \
+      image.base.ref.name="mcr.microsoft.com/dotnet/aspnet:6.0"
 
 WORKDIR /app
 
