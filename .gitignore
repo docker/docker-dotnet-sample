@@ -1,6 +1,7 @@
 db/
 compose.yaml
 
+.vs/
 .vscode/
 
 # Build results
