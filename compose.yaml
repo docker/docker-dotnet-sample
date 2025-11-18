@@ -13,7 +13,7 @@ services:
       context: .
       target: final
     ports:
-      - 8080:80
+      - 8080:8080
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
@@ -31,7 +31,7 @@ services:
 #     secrets:
 #       - db-password
 #     volumes:
-#       - db-data:/var/lib/postgresql/data
+#       - db-data:/var/lib/postgresql
 #     environment:
 #       - POSTGRES_DB=example
 #       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
